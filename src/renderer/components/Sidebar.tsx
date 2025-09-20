@@ -79,26 +79,66 @@ export default function Sidebar({ onThemeChange }: SidebarProps) {
   const styles = useStyles();
   const navigate = useNavigate();
 
+  const handleNewChatClick = () => {
+    navigate('/');
+  };
+
+  const handleStreamChatClick = () => {
+    navigate('/stream-chat');
+  };
+
+  const handleRecentChatsClick = () => {
+    navigate('/recent-chats');
+  };
+
   const handleSettingsClick = () => {
     navigate('/settings');
   };
 
+  const handleHelpSupportClick = () => {
+    navigate('/help-support');
+  };
+
+  const handleLiveLMStudioClick = () => {
+    navigate('/');
+  };
+
   return (
     <div className={styles.sidebar}>
-      <div className={styles.sidebarHeader}>
+      <div
+        className={styles.sidebarHeader}
+        onClick={handleLiveLMStudioClick}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            handleLiveLMStudioClick();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+      >
         <Chat24Regular style={{ fontSize: '24px' }} />
         <span>LiveLM Studio</span>
       </div>
       <Button
         icon={<Add24Regular />}
         className={`${styles.navButton} ${styles.primaryButton}`}
+        onClick={handleNewChatClick}
       >
         New Chat
+      </Button>
+      <Button
+        icon={<Chat24Regular />}
+        className={styles.navButton}
+        appearance="subtle"
+        onClick={handleStreamChatClick}
+      >
+        Stream Chat
       </Button>
       <Button
         icon={<History24Regular />}
         className={styles.navButton}
         appearance="subtle"
+        onClick={handleRecentChatsClick}
       >
         Recent chats
       </Button>
@@ -114,6 +154,7 @@ export default function Sidebar({ onThemeChange }: SidebarProps) {
         icon={<QuestionCircle24Regular />}
         className={styles.navButton}
         appearance="subtle"
+        onClick={handleHelpSupportClick}
       >
         Help & support
       </Button>
