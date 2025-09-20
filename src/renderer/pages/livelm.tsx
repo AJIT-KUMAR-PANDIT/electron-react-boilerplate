@@ -24,7 +24,6 @@ import {
   Square24Regular,
   Dismiss24Regular,
 } from '@fluentui/react-icons';
-import TitleBar from '../components/TitleBar';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import ChatContainer from '../components/ChatContainer';
@@ -234,7 +233,7 @@ const useStyles = makeStyles({
     backgroundColor: tokens.colorNeutralBackground3,
     ...shorthands.border('1px', 'solid', tokens.colorNeutralStroke2),
     '&:focus': {
-      borderColor: tokens.colorBrandStroke1,
+      borderColor: tokens.colorBrandBackgroundHover,
       backgroundColor: tokens.colorNeutralBackground1,
     },
   },
@@ -268,23 +267,11 @@ const useStyles = makeStyles({
 
 // Main Component - Windows 11 LiveLM Studio UI
 export default function LiveLMStudio() {
-  const [theme, setTheme] = useState(webDarkTheme);
   const styles = useStyles();
 
-  const onThemeChange = (event: any, data: any) => {
-    setTheme(data.optionValue === 'dark' ? webDarkTheme : webLightTheme);
-  };
-
   return (
-    <FluentProvider theme={theme}>
-      <div className={styles.root}>
-        <TitleBar />
-        <Sidebar onThemeChange={onThemeChange} />
-        <div className={styles.content}>
-          <Header />
-          <ChatContainer />
-        </div>
-      </div>
-    </FluentProvider>
+    <div className={styles.chatContainer}>
+      <ChatContainer />
+    </div>
   );
 }

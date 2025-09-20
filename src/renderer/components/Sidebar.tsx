@@ -1,5 +1,12 @@
 import React from 'react';
-import { Button, Dropdown, Option } from '@fluentui/react-components';
+import {
+  Button,
+  Dropdown,
+  Option,
+  makeStyles,
+  shorthands,
+  tokens,
+} from '@fluentui/react-components';
 import {
   Add24Regular,
   History24Regular,
@@ -7,7 +14,7 @@ import {
   QuestionCircle24Regular,
   Chat24Regular,
 } from '@fluentui/react-icons';
-import { makeStyles, shorthands, tokens } from '@fluentui/react-components';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles({
   sidebar: {
@@ -70,6 +77,11 @@ interface SidebarProps {
 
 export default function Sidebar({ onThemeChange }: SidebarProps) {
   const styles = useStyles();
+  const navigate = useNavigate();
+
+  const handleSettingsClick = () => {
+    navigate('/settings');
+  };
 
   return (
     <div className={styles.sidebar}>
@@ -94,6 +106,7 @@ export default function Sidebar({ onThemeChange }: SidebarProps) {
         icon={<Settings24Regular />}
         className={styles.navButton}
         appearance="subtle"
+        onClick={handleSettingsClick}
       >
         Settings
       </Button>

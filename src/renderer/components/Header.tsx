@@ -32,7 +32,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Header() {
+interface HeaderProps {
+  pageTitle: string;
+}
+
+export default function Header({ pageTitle }: HeaderProps) {
   const styles = useStyles();
 
   return (
@@ -44,7 +48,7 @@ export default function Header() {
             fontSize: '28px',
           }}
         />
-        <h1>LiveLM</h1>
+        <h1>{pageTitle}</h1>
       </div>
       <Dropdown
         defaultValue="LiveLM 2.5 Flash"
